@@ -3,6 +3,15 @@ ActiveAdmin.register Post do
 
   config.filters = false
 
+  controller do
+    def create
+      @post = Post.new(permitted_params[:post])
+
+      if @post.save
+        redirect_to admin_posts_path
+      end
+    end
+  end
   # or
   #
   # permit_params do
