@@ -12,6 +12,14 @@ ActiveAdmin.register Post do
       end
     end
   end
+
+  sidebar :actions do
+    button_to "Update post", "/admin/posts/update_posts", :method => :post
+  end
+
+  collection_action :update_posts, :method => :post do
+    redirect_to admin_posts_path, :notice => "Updated All posts"
+  end
   # or
   #
   # permit_params do
