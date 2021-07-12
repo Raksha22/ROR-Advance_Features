@@ -6,6 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.0.0'
 
 gem 'activeadmin'
+gem 'cancancan'
 gem 'devise'
 gem 'overcommit', '~> 0.58.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
