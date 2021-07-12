@@ -1,12 +1,36 @@
 ActiveAdmin.register Post do
-
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # Uncomment all parameters which should be permitted for assignment
-  #
   permit_params :title, :description
-  #
+
+  config.filters = true
+
+  index do
+    column :id
+    column :title
+    column :description
+    column :published_at
+    column :created_at
+    actions defaults: false do |post|
+      item "View", admin_post_path(post), class: 'member_link'
+      item 'Edit', edit_admin_post_path(post), class: 'member_link'
+      item 'Delete', admin_post_path(post), :method => :delete
+    end
+  end
+
+  show do
+    render partial: 'admin/posts/show'
+  end
+
+  filter :title
+
+  controller do
+    def create
+      @post = Post.new(permitted_params[:post])
+
+      if @post.save
+        redirect_to admin_posts_path
+      end
+    end
+  end
   # or
   #
   # permit_params do
