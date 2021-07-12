@@ -16,6 +16,10 @@ ActiveAdmin.register Post do
     end
   end
 
+  show do
+    render partial: 'admin/posts/show'
+  end
+
   filter :title
 
   controller do
