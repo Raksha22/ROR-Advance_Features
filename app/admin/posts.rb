@@ -1,7 +1,22 @@
 ActiveAdmin.register Post do
   permit_params :title, :description
 
-  config.filters = false
+  config.filters = true
+
+  index do
+    column :id
+    column :title
+    column :description
+    column :published_at
+    column :created_at
+    actions defaults: false do |post|
+      item "View", admin_post_path(post), class: 'member_link'
+      item 'Edit', edit_admin_post_path(post), class: 'member_link'
+      item 'Delete', admin_post_path(post), :method => :delete
+    end
+  end
+
+  filter :title
 
   controller do
     def create
