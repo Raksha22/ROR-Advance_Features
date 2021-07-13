@@ -21,7 +21,7 @@ ActiveAdmin.register AdminUser do
       f.input :email
       f.input :password
       f.input :password_confirmation
-      f.input :admin_role_id,:as => :select, collection: AdminRole.all.map{|x| [x.role, x.id]}
+      f.input :admin_role_id,:as => :select, collection: AdminRole.all.map{|admin_role| [admin_role.name, admin_role.id]}
     end
     f.actions
   end
