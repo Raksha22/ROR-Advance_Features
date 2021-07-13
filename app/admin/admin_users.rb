@@ -4,17 +4,16 @@ ActiveAdmin.register AdminUser do
   index do
     selectable_column
     id_column
+    column :name
     column :email
-    column :current_sign_in_at
-    column :sign_in_count
     column :created_at
+    column :updated_at
     actions
   end
 
   filter :email
-  filter :current_sign_in_at
-  filter :sign_in_count
   filter :created_at
+  filter :name_or_email_cont, as: :string, label: "Name $ Email"
 
   form do |f|
     f.inputs do
