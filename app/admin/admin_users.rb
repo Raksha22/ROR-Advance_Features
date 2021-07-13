@@ -1,5 +1,5 @@
 ActiveAdmin.register AdminUser do
-  permit_params :name, :email, :password, :password_confirmation
+  permit_params :email, :password, :password_confirmation, :admin_role_id, :name
 
   index do
     selectable_column
@@ -21,6 +21,7 @@ ActiveAdmin.register AdminUser do
       f.input :email
       f.input :password
       f.input :password_confirmation
+      f.input :admin_role_id,:as => :select, collection: AdminRole.all.map{|admin_role| [admin_role.name, admin_role.id]}
     end
     f.actions
   end
