@@ -4,4 +4,7 @@ Rails.application.routes.draw do
   root 'users#index'
   devise_for :users
   resources :users
+
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
 end
