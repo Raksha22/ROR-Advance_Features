@@ -1,8 +1,12 @@
 class PostJob < ApplicationJob
-  queue_as :default
 
   def perform
-    @post = Post.create(title: "job")
-    puts "Post created Succesfully"
+  byebug
+    PostWorker.set(queue: 'post create').perform_at(1.seconds.from_now, 'create_post')
   end
 end
+
+
+
+
+
