@@ -5,7 +5,7 @@ ActiveAdmin.register Post do
 
   scope :all
   scope :published, :default => true do |post|
-    post.where(:published => 'yes')
+    post.where(:published => true)
   end
 
   index do
@@ -39,7 +39,7 @@ ActiveAdmin.register Post do
   end
 
   sidebar :actions do
-    button_to "Update post", "/admin/posts/update_posts", method: :post
+    button_to "Update post", update_posts_admin_posts_path, method: :post
   end
 
   collection_action :update_posts, method: :post do

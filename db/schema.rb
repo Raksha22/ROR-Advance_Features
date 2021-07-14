@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2021_07_13_125441) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "published"
+    t.boolean "published"
   end
 
   create_table "users", force: :cascade do |t|
