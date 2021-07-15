@@ -3,11 +3,6 @@ ActiveAdmin.register Post do
 
   config.filters = true
 
-  scope :all
-  scope :published, :default => true do |post|
-    post.where(:published => true)
-  end
-
   index do
     column :id
     column :title
