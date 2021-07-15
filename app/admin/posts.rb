@@ -1,5 +1,5 @@
 ActiveAdmin.register Post do
-  permit_params :title, :description, :published
+  permit_params :title, :description, :published, :rating
 
   config.filters = true
 
@@ -31,8 +31,8 @@ ActiveAdmin.register Post do
       end
     end
     def show
-      post = Post.where(id: permitted_params[:id]).select(:id, :title, :description)
-      PostWorker.perform_async(post.first.title, post.first.description)
+      post = Post.where(id: permitted_params[:id]).select(:id, :title, :rating)
+      PostWorker.perform_async(post.first.title, post.first.rating)
     end
 
   end

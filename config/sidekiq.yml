@@ -4,3 +4,12 @@ production:
   :concurrency: 1
 :queues:
   - default
+
+:schedule:
+  post_worker:
+    cron: '0 * * * * *'   # Runs once per minute
+    class: PostWorker
+
+  test:
+    cron: '0 * * * * *'   # Runs once per minute
+    class: Test
