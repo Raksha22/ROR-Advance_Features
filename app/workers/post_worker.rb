@@ -1,14 +1,11 @@
 class PostWorker
   include Sidekiq::Worker
 
-  def perform(type, params = {})
-  byebug
-    params = eval params rescue params.with_indifferent_access
+  def perform(title, sec)
     begin
-      if type =='create_post'
-        @post = Post.create(title: "job")
-        puts "Post created Succesfully"
-      end
+    p "hello #{title}, going to sleep for #{9}"
+    sleep(9)
+    p "it was quite"
     rescue => e
       on_demand_logger = Logger.new("#{Rails.root}/log/sidekiq_errors.log")
       log = { class: self.class, time: Time.now.utc, exception: e, backtrace: e.backtrace.first }

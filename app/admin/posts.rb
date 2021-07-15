@@ -1,5 +1,5 @@
 ActiveAdmin.register Post do
-  permit_params :title, :description
+  permit_params :title, :description, :published
 
   config.filters = true
 
@@ -7,7 +7,7 @@ ActiveAdmin.register Post do
     column :id
     column :title
     column :description
-    column :published_at
+    column :published?
     column :created_at
     actions defaults: false do |post|
       item "View", admin_post_path(post), class: 'member_link'
@@ -16,9 +16,9 @@ ActiveAdmin.register Post do
     end
   end
 
-  show do
-    render partial: 'admin/posts/show'
-  end
+  # show do
+  #   render partial: 'admin/posts/show'
+  # end
 
   filter :title
 
@@ -30,20 +30,19 @@ ActiveAdmin.register Post do
         redirect_to admin_posts_path
       end
     end
+    def show
+      post = Post.where(id: permitted_params[:id]).select(:id, :title, :description)
+      PostWorker.perform_async(post.first.title, post.first.description)
+    end
+
   end
 
   sidebar :actions do
-    button_to "Update post", "/admin/posts/update_posts", :method => :post
+    button_to "Update post", update_posts_admin_posts_path, method: :post
   end
 
-  collection_action :update_posts, :method => :post do
+  collection_action :update_posts, method: :post do
     redirect_to admin_posts_path, :notice => "Updated All posts"
   end
-  # or
-  #
-  # permit_params do
-  #   permitted = [:title, :description]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
+
 end
