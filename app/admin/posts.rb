@@ -1,5 +1,5 @@
 ActiveAdmin.register Post do
-  permit_params :title, :description, :published
+  permit_params :title, :description, :published, :rating
 
   config.filters = true
 
@@ -24,11 +24,8 @@ ActiveAdmin.register Post do
 
   controller do
     def create
-      @post = Post.new(permitted_params[:post])
-
-      if @post.save
-        redirect_to admin_posts_path
-      end
+      PostJob.perform_later(permitted_params)
+      redirect_to admin_posts_path
     end
     def show
       post = Post.where(id: permitted_params[:id]).select(:id, :title, :description)
