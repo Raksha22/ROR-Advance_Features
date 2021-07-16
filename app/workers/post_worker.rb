@@ -3,9 +3,9 @@ class PostWorker
 
   def perform(title, sec)
     begin
-    p "hello #{title}, going to sleep for #{sec}"
+    puts "hello #{title}, going to sleep for #{sec}"
     sleep(sec)
-    p "it was quite"
+    puts "it was quite"
     rescue => e
       on_demand_logger = Logger.new("#{Rails.root}/log/sidekiq_errors.log")
       log = { class: self.class, time: Time.now.utc, exception: e, backtrace: e.backtrace.first }

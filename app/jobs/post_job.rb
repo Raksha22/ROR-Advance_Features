@@ -1,8 +1,8 @@
 class PostJob < ApplicationJob
 
-  def perform
+  # def perform
     # PostWorker.set(queue: 'post create').perform_at(1.seconds.from_now, 'create_post')
-  end
+  # end
 end
 
 
