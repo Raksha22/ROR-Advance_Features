@@ -1,5 +1,5 @@
 ActiveAdmin.register Post do
-  permit_params :title, :description
+  permit_params :title, :description, :published
 
   config.filters = true
 
@@ -7,7 +7,7 @@ ActiveAdmin.register Post do
     column :id
     column :title
     column :description
-    column :published_at
+    column :published?
     column :created_at
     actions defaults: false do |post|
       item "View", admin_post_path(post), class: 'member_link'
@@ -21,6 +21,7 @@ ActiveAdmin.register Post do
   end
 
   filter :title
+  filter :published
 
   controller do
     def create
@@ -33,17 +34,11 @@ ActiveAdmin.register Post do
   end
 
   sidebar :actions do
-    button_to "Update post", "/admin/posts/update_posts", :method => :post
+    button_to "Update post", update_posts_admin_posts_path, method: :post
   end
 
-  collection_action :update_posts, :method => :post do
+  collection_action :update_posts, method: :post do
     redirect_to admin_posts_path, :notice => "Updated All posts"
   end
-  # or
-  #
-  # permit_params do
-  #   permitted = [:title, :description]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
+
 end
