@@ -29,8 +29,8 @@ ActiveAdmin.register Post do
       redirect_to admin_posts_path
     end
     def show
-      post = Post.where(id: permitted_params[:id]).select(:id, :title, :description)
-      PostWorker.perform_async(post.first.title, post.first.description)
+      post = Post.select(:id, :title, :rating).find_by(id: permitted_params[:id])
+      PostWorker.perform_async(post.title, post.rating)
     end
 
   end
