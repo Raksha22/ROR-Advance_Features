@@ -15,6 +15,33 @@ ActiveAdmin.register AdminUser do
   filter :created_at
   filter :name_or_email_cont, as: :string, label: "Name $ Email"
 
+  controller do
+
+    def create
+      result = AdminUsers::CreateAdminUser.run(params[:admin_user])
+
+      if result.valid?
+        redirect_to admin_admin_users_path
+      else
+        redirect_to new_admin_admin_user
+      end
+	  end
+    def update
+      result = AdminUsers::UpdateAdminUser.run(params[:admin_user])
+      if result.valid?
+        redirect_to admin_admin_users_path
+      else
+        redirect_to edit_admin_admin_user_path
+      end
+    end
+    def destroy
+      result = AdminUsers::DestroyAdminUser.run(params)
+      if result.valid?
+        redirect_to admin_admin_users_path
+      end
+    end
+  end
+
   form do |f|
     f.inputs do
       f.input :name

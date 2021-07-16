@@ -1,7 +1,6 @@
 module AdminUsers
 
 	class CreateAdminUser < ActiveInteraction::Base
-		byebug
 		string :email, :name, :admin_role_id, :password
 
 		def execute
