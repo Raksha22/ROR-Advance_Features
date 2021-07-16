@@ -1,5 +1,5 @@
 ActiveAdmin.register Post do
-  permit_params :title, :description, :published
+  permit_params :title, :description, :published, :rating
 
   config.filters = true
 
@@ -16,9 +16,9 @@ ActiveAdmin.register Post do
     end
   end
 
-  show do
-    render partial: 'admin/posts/show'
-  end
+  # show do
+  #   render partial: 'admin/posts/show'
+  # end
 
   filter :title
   filter :published
@@ -31,6 +31,11 @@ ActiveAdmin.register Post do
         redirect_to admin_posts_path
       end
     end
+    def show
+      post = Post.select(:id, :title, :rating).find_by(id: permitted_params[:id])
+      PostWorker.perform_async(post.title, post.rating)
+    end
+
   end
 
   sidebar :actions do
