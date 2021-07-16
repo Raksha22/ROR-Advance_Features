@@ -21,6 +21,7 @@ ActiveAdmin.register Post do
   # end
 
   filter :title
+  filter :published
 
   controller do
     def create
