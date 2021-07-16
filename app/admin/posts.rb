@@ -25,11 +25,8 @@ ActiveAdmin.register Post do
 
   controller do
     def create
-      @post = Post.new(permitted_params[:post])
-
-      if @post.save
-        redirect_to admin_posts_path
-      end
+      PostJob.perform_later(permitted_params)
+      redirect_to admin_posts_path
     end
     def show
       post = Post.select(:id, :title, :rating).find_by(id: permitted_params[:id])
