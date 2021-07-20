@@ -1,5 +1,5 @@
 ActiveAdmin.register AdminUser do
-  permit_params :email, :password, :password_confirmation, :admin_role_id, :name
+  # permit_params :email, :password, :password_confirmation, :admin_role_id, :name
 
   index do
     selectable_column
@@ -18,29 +18,33 @@ ActiveAdmin.register AdminUser do
   controller do
 
     def create
-      result = AdminUsers::CreateAdminUser.run(params[:admin_user])
-
-      if result.valid?
-        redirect_to admin_admin_users_path
-      else
-        redirect_to new_admin_admin_user
-      end
+      result = AdminUsers::CreateAdminUser.run(admin_user_params)
+        if result.valid?
+          redirect_to admin_admin_users_path
+        else
+          redirect_to new_admin_admin_user_path
+        end
     end
 
     def update
-      result = AdminUsers::UpdateAdminUser.run(params[:admin_user])
-      if result.valid?
-        redirect_to admin_admin_users_path
-      else
-        redirect_to edit_admin_admin_user_path
-      end
+      result = AdminUsers::UpdateAdminUser.run(params)
+        if result.valid?
+          redirect_to admin_admin_users_path
+        else
+          redirect_to edit_admin_admin_user_path
+        end
     end
     
     def destroy
       result = AdminUsers::DestroyAdminUser.run(params)
-      if result.valid?
-        redirect_to admin_admin_users_path
-      end
+        if result.valid?
+          redirect_to admin_admin_users_path
+        end
+    end
+
+    private
+    def admin_user_params
+      params.require(:admin_user).permit(:email, :password, :password_confirmation, :admin_role_id, :name)
     end
   end
 
