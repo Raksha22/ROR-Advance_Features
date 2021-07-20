@@ -35,7 +35,8 @@ ActiveAdmin.register Post do
     end
 
     def index
-      @posts = Post.eager_load(:admin_user).to_a
+      # @posts = Post.eager_load(:admin_user).where("posts.title='first post'")
+      @posts = Post.joins(:admin_user).where("posts.title='first post'")
     end
 
   end

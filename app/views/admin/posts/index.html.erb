@@ -5,15 +5,15 @@
 
   <tr>
     <th>Title</th>
-    <th>Dscription</th>
+    <th>Description</th>
   </tr>
 
   <tr>
   <% @posts.each do |post| %>
     <h4> 
     <div>
-     <b><%= post.title%></b><br>
-        <%= post.description %>
+      <td><%= post.title%></td>
+      <td><%= post.description %></td>
     </div>
     </h4>
   <% end %>
