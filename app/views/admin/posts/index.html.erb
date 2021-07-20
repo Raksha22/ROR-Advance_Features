@@ -1,0 +1,22 @@
+
+<h1>Listing Posts</h1>
+
+<div>
+  <tr>
+    <th>Title</th>
+    <th>Dscription</th>
+    
+    <th colspan="15"></th>
+  </tr>
+
+  <% @posts.each do |post| %>
+    <h4> 
+    <div>
+     <b><%= post.title%></b><br>
+        <%= post.description %>
+    </div>
+    </h4>
+  <% end %>
+
+
+</div>

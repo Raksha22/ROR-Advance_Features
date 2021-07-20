@@ -28,9 +28,14 @@ ActiveAdmin.register Post do
       PostJob.perform_later(permitted_params)
       redirect_to admin_posts_path
     end
+
     def show
       post = Post.select(:id, :title, :rating).find_by(id: permitted_params[:id])
       PostWorker.perform_async(post.title, post.rating)
+    end
+
+    def index
+      @posts = Post.eager_load(:admin_user).to_a
     end
 
   end
