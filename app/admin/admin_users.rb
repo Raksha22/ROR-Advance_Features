@@ -25,7 +25,8 @@ ActiveAdmin.register AdminUser do
       else
         redirect_to new_admin_admin_user
       end
-	  end
+    end
+
     def update
       result = AdminUsers::UpdateAdminUser.run(params[:admin_user])
       if result.valid?
@@ -34,6 +35,7 @@ ActiveAdmin.register AdminUser do
         redirect_to edit_admin_admin_user_path
       end
     end
+    
     def destroy
       result = AdminUsers::DestroyAdminUser.run(params)
       if result.valid?
