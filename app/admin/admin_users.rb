@@ -18,29 +18,38 @@ ActiveAdmin.register AdminUser do
 
     def create
       result = AdminUsers::CreateAdminUser.run(admin_user_params)
+
       if result.valid?
         redirect_to admin_admin_users_path
       else
         redirect_to new_admin_admin_user_path
-        flash[:alert] = "Please fill correct details with valid formats"
+        flash[:alert] = result.errors.messages
       end
     end
 
     def update
+      byebug
       admin_user = AdminUser.find(params[:id])
       result = AdminUsers::UpdateAdminUser.run(admin_user_params.merge(admin_user: admin_user))
+
       if result.valid?
         redirect_to admin_admin_users_path
       else
         redirect_to edit_admin_admin_user_path
-        flash[:alert] = "Please fill correct details with valid formats"
+        flash[:alert] = result.errors.messages
       end
     end
     
     def destroy
-      result = AdminUsers::DestroyAdminUser.run(params)
+      # byebug
+      admin_user = AdminUser.find(params[:id])
+      result = AdminUsers::DestroyAdminUser.run(admin_user: admin_user)
+
       if result.valid?
         redirect_to admin_admin_users_path
+      else
+        redirect_to admin_admin_users_paths
+        flash[:alert] = result.errors.messages
       end
     end
 

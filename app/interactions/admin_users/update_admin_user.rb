@@ -8,6 +8,7 @@ module AdminUsers
       unless admin_user.update(inputs.except(:admin_user))
         errors.merge!(admin_user.errors)
       end
+
       admin_user
     end
   end

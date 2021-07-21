@@ -1,10 +1,14 @@
 module AdminUsers
 
   class DestroyAdminUser < ActiveInteraction::Base
-    string :id
+    object :admin_user
+
     def execute
-      admin_user = AdminUser.find(id)
-      admin_user.destroy
+      unless admin_user.destroy
+        errors.merge!(admin_user.errors)
+      end
+
+      admin_user
     end
   end
 
