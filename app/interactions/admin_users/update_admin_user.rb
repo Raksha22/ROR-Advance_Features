@@ -1,14 +1,14 @@
 module AdminUsers
 
   class UpdateAdminUser < ActiveInteraction::Base
-    string :id
-    hash :admin_user do
-      string :email, :name, :admin_role_id, :password, :password_confirmation
-    end
+    object :admin_user
+    string :email, :name, :admin_role_id, :password, :password_confirmation
 
     def execute
-      admin_user_result = AdminUser.find(id)
-      admin_user_result.update(admin_user)
+      unless admin_user.update(inputs.except(:admin_user))
+        errors.merge!(admin_user.errors)
+      end
+      admin_user
     end
   end
 
