@@ -1,5 +1,4 @@
 class EmployeesController < ApplicationController
-
   caches_action :index
 
   def index
