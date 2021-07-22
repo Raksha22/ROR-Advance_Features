@@ -1,11 +1,12 @@
 class Employee < ApplicationRecord
+
   VALID_GENDER = %w(male female)
 
   scope :by_gender, ->(gender) do
     if VALID_GENDER.include?(gender)
-      where gender: gender
+      Rails.cache.fetch("employees_#{gender}") { puts 'evaluating...' ; where gender: gender }
     else
-      all
+      Rails.cache.fetch('all_employees') { puts 'evaluating...' ; all }
     end
   end
 end
