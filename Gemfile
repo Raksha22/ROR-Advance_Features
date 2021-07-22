@@ -8,6 +8,7 @@ ruby '3.0.0'
 gem 'activeadmin'
 gem 'cancancan'
 gem 'devise'
+gem 'nokogiri'
 gem 'overcommit', '~> 0.58.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4'
@@ -26,6 +27,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 gem 'pg'
+gem 'pry'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
