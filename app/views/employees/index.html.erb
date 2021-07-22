@@ -1,5 +1,7 @@
-<h1>Our brilliant employees</h1>
+<h1>Our employees</h1>
 
-<ul>
-  <%= render @employees, cached: true %>
-</ul>
+<% cache @employees do %>
+  <ul>
+    <%= render @employees, cached: true %>
+  </ul>
+<% end %>
