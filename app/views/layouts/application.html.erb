@@ -13,6 +13,14 @@
   </head>
 
   <body>
+    <% if @requests %>
+      <p>Last pages visited:</p>
+      <ul>
+        <% @requests.each do |request| %>
+          <li><%= link_to request, request %></li>
+        <% end %>
+      </ul>
+    <% end %>
     <%= yield %>
   </body>
 </html>
