@@ -1,6 +1,6 @@
 module AdminUsers
 
-  class DestroyAdminUser < ActiveInteraction::Base
+  class DestroyIntr < ActiveInteraction::Base
 
     object :admin_user
 

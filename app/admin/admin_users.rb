@@ -17,7 +17,7 @@ ActiveAdmin.register AdminUser do
   controller do
 
     def create
-      result = AdminUsers::CreateAdminUser.run(admin_user_params)
+      result = AdminUsers::CreateIntr.run(admin_user_params)
 
       if result.valid?
         redirect_to admin_admin_users_path
@@ -29,7 +29,7 @@ ActiveAdmin.register AdminUser do
 
     def update
       admin_user = AdminUser.find(params[:id])
-      result = AdminUsers::UpdateAdminUser.run(admin_user_params.merge(admin_user: admin_user))
+      result = AdminUsers::UpdateIntr.run(admin_user_params.merge(admin_user: admin_user))
 
       if result.valid?
         redirect_to admin_admin_users_path
@@ -41,7 +41,7 @@ ActiveAdmin.register AdminUser do
     
     def destroy
       admin_user = AdminUser.find(params[:id])
-      result = AdminUsers::DestroyAdminUser.run(admin_user: admin_user)
+      result = AdminUsers::DestroyIntr.run(admin_user: admin_user)
 
       if result.valid?
         redirect_to admin_admin_users_path

@@ -1,6 +1,6 @@
 module AdminUsers
 
-  class UpdateAdminUser < ActiveInteraction::Base
+  class UpdateIntr < ActiveInteraction::Base
 
     object :admin_user
     string :email, :name, :admin_role_id, :password, :password_confirmation

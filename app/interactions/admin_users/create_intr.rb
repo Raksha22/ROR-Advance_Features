@@ -1,6 +1,6 @@
 module AdminUsers
 
-  class CreateAdminUser < ActiveInteraction::Base
+  class CreateIntr < ActiveInteraction::Base
 
     string :email, :name, :admin_role_id, :password, :password_confirmation
 
