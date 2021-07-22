@@ -28,7 +28,6 @@ ActiveAdmin.register AdminUser do
     end
 
     def update
-      byebug
       admin_user = AdminUser.find(params[:id])
       result = AdminUsers::UpdateAdminUser.run(admin_user_params.merge(admin_user: admin_user))
 
@@ -41,7 +40,6 @@ ActiveAdmin.register AdminUser do
     end
     
     def destroy
-      # byebug
       admin_user = AdminUser.find(params[:id])
       result = AdminUsers::DestroyAdminUser.run(admin_user: admin_user)
 

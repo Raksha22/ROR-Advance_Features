@@ -1,15 +1,14 @@
 module AdminUsers
 
   class DestroyAdminUser < ActiveInteraction::Base
+
     object :admin_user
 
     def execute
-      unless admin_user.destroy
-        errors.merge!(admin_user.errors)
-      end
-
+      errors.merge!(admin_user.errors) unless admin_user.destroy
       admin_user
     end
+    
   end
 
 end
