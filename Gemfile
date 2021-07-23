@@ -7,6 +7,7 @@ ruby '3.0.0'
 
 gem 'activeadmin'
 gem 'active_interaction'
+gem 'actionpack-action_caching'
 gem 'cancancan'
 gem 'devise'
 gem 'nokogiri'
