@@ -1,3 +1,7 @@
 en:
   welcome: Welcome to home page!
   home_flash: Home flash!
+
+  time:
+    formats:
+      short: "around %H'is"
