@@ -1,6 +1,6 @@
 # This is testing controller
 class HomeController < ApplicationController
   def index
-    # index
+    flash[:notice] = t(:home_flash)
   end
 end
