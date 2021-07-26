@@ -12,6 +12,7 @@ gem 'cancancan'
 gem 'devise'
 gem 'nokogiri'
 gem 'overcommit', '~> 0.58.0'
+gem 'haml'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4'
 gem 'rubocop', require: false
