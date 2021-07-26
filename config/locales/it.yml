@@ -1,0 +1,7 @@
+it:
+  welcome: Benvenuto in home page!
+  home_flash: Lampo a casa!
+
+  time:
+    formats:
+      short: "intorno a %H'is"
