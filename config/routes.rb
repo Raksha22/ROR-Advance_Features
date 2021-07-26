@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   resources :users
   resources :employees, only: [:index]
 
+  get "homes/delete_cookies"
+  get "homes/show_cookies"
+  get "homes/set_cookies"
+
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 end
