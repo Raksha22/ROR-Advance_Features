@@ -1,0 +1,5 @@
+<h2><%= @student.name %> </h2> has klass with:
+
+<% @student.tutors.each do |tutor| %>
+  <%= link_to tutor.name, tutor_path(tutor) %>
+<% end %><br>
