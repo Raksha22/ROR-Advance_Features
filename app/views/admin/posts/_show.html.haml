@@ -1,0 +1,10 @@
+%p
+  %strong Title:
+  = @post.title
+%p
+  %strong Description:
+  = @post.description
+%p
+  %strong Published:
+  = @post.published
+= link_to 'Back', admin_posts_path
