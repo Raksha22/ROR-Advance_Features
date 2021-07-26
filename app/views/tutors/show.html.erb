@@ -1,0 +1,6 @@
+<h2><%= @tutor.name %></h2>
+Klasses:
+  <% @tutor.klasses.each do |klass| %>
+    <%= link_to klass.student.name, student_path(klass.student) %> has
+    <%= klass.subject %> klass<br>
+  <% end %>

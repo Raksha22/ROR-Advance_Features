@@ -1,0 +1,12 @@
+<div>
+  <table>
+    <tbody>
+      <% @tutors.each do |tutor|%>
+        <td>
+          <tr><%= tutor.name %></tr>
+        </td>
+        <%= link_to 'show', tutor %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

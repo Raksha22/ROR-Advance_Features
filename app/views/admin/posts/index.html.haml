@@ -1,0 +1,11 @@
+%h1 Listing Posts
+%div
+  %tr
+    %th Title
+    %th Description
+  %tr
+    - @posts.each do |post|
+      %h4
+        %div
+          %td= post.title
+          %td= post.description
