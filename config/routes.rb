@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   resources :tutors
   resources :students
 
+  get "homes/delete_cookies"
+  get "homes/show_cookies"
+  get "homes/set_cookies"
+
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 end

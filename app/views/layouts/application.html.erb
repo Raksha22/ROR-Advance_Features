@@ -13,6 +13,13 @@
   </head>
 
   <body>
+    <% if @requests %>
+      <p>Last pages visited:</p>
+      <ul>
+        <% @requests.each do |request| %>
+          <li><%= link_to request, request %></li>
+        <% end %>
+      </ul>
     <% if user_signed_in? %> 
       Logged in as <strong><%= current_user.email %></strong>.
       <%= link_to 'Edit Profile', edit_user_registration_path %>
