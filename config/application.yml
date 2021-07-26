@@ -1,1 +1,1 @@
-MAIL_HOST: localhost
+MAIL_HOST: 'localhost'
